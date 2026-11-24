@@ -47,10 +47,10 @@ Append a definition to [src/statue_definitions.h](src/statue_definitions.h), add
 
 ## Build
 
-Use CMake 3.29+, MSVC x64, C++20, MASM and the exact official SDK 0.4.0 package. Keep generated output outside the source tree:
+Use CMake 3.29+, MSVC x64, C++20, MASM and the exact official SDK 0.4.0 package. Install/export the SDK package first: `D2RLPlugin_DIR` must name its installed package directory, not the SDK source `cmake` folder. Keep generated output outside the source tree:
 
 ```powershell
-cmake -S . -B ../build-collector-statues -DD2RLPlugin_DIR="<PluginSDK>/cmake"
+cmake -S . -B ../build-collector-statues -DD2RLPlugin_DIR="<SDK install>/lib/cmake/D2RLPlugin"
 cmake --build ../build-collector-statues --config Release
 ```
 
@@ -61,7 +61,7 @@ The build uses the static MSVC runtime. A direct Developer Command Prompt build 
 Python 3 is needed only for synthetic test-fixture generation:
 
 ```powershell
-cmake -S . -B ../build-collector-statues-tests -DD2RLPlugin_DIR="<PluginSDK>/cmake" -DCOLLECTOR_STATUES_BUILD_TESTS=ON
+cmake -S . -B ../build-collector-statues-tests -DD2RLPlugin_DIR="<SDK install>/lib/cmake/D2RLPlugin" -DCOLLECTOR_STATUES_BUILD_TESTS=ON
 cmake --build ../build-collector-statues-tests --config Release
 ctest --test-dir ../build-collector-statues-tests -C Release --output-on-failure
 ```
